@@ -1,7 +1,10 @@
 package ar.edu.utn.frba.dds.models.entities;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class Clima {
     private Long id;
     private Double temperatura;

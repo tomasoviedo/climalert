@@ -15,6 +15,6 @@ public class ClimaScheduler {
 
     @Scheduled(cron = "0 /5 * * * *", zone = "America/Argentina/Buenos_Aires")
     public void obtenerClima(){
-        climaService.obtenerClima();
+        climaService.guardarClima();
     }
 }
