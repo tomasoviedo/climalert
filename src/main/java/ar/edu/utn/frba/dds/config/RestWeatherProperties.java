@@ -9,4 +9,5 @@ public class RestWeatherProperties {
 
     private String baseUrl;
     private String apiKey;
+    private String location;
 }

@@ -6,12 +6,14 @@ import ar.edu.utn.frba.dds.models.entities.DTO.ClimaRespuesta;
 import ar.edu.utn.frba.dds.repositories.ClimaRepository;
 import ar.edu.utn.frba.dds.services.ClimaService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ClimaServiceImpl implements ClimaService {
@@ -23,14 +25,17 @@ public class ClimaServiceImpl implements ClimaService {
     @Override
     public Clima guardarClima() {
         ClimaRespuesta res = this.obtenerClimaActual();
+        log.info("Respuesta cruda de WeatherAPI: {}", res);
+
         Clima clima = new Clima();
-        clima.setTemperatura(res.getCurrent().getTempC());
-        clima.setHumedad(Double.valueOf(res.getCurrent().getHumidity()));
-        clima.setCiudad(res.getLocation().getName());
-        clima.setPais(res.getLocation().getCountry());
-        clima.setRegion(res.getLocation().getRegion());
+        clima.setTemperatura(res.current().tempC());
+        clima.setHumedad(Double.valueOf(res.current().humidity()));
+        clima.setCiudad(res.location().name());
+        clima.setPais(res.location().country());
+        clima.setRegion(res.location().region());
 
         climaRepository.save(clima);
+        log.info("Clima guardado: {}", clima);
         return clima;
     }
 
@@ -38,7 +43,7 @@ public class ClimaServiceImpl implements ClimaService {
         URI uri =
                 UriComponentsBuilder.fromUriString(properties.getBaseUrl())
                         .queryParam("key", properties.getApiKey())
-                        .queryParam("q", "CABA")
+                        .queryParam("q", properties.getLocation())
                         .queryParam("aqi", "no")
                         .build()
                         .toUri();

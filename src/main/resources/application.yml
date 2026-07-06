@@ -1,3 +1,4 @@
 weather-api:
   base-url: http://api.weatherapi.com/v1/current.json
   api-key: bb0362724b964c08bfa140029260307
+  location: CABA
