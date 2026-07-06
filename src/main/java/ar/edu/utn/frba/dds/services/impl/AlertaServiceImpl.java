@@ -17,13 +17,12 @@ public class AlertaServiceImpl implements AlertaService {
   private EmailService emailService;
 
   @Override
-  public Alerta analizarClima() {
+  public void analizarClima() {
     Clima clima = repository.getLast();
     Alerta alerta = generador.evaluarClima(clima);
     if (alerta != null) {
       emailService.enviarAlerta(alerta);
-      return alerta;
+      
     }
-    return alerta;
   }
 }

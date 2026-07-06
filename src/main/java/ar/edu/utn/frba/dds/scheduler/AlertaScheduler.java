@@ -13,6 +13,8 @@ public class AlertaScheduler {
 
   @Scheduled(cron = "0 /5 * * * *", zone = "America/Argentina/Buenos_Aires")
   public void obtenerClima() {
-    Alerta alerta = alertaService.analizarClima();
+
+    System.out.println("cron task de alertas");
+    alertaService.analizarClima();
   }
 }

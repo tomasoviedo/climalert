@@ -4,7 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GeneradorAlertas {
-  private Icono icono;
+  private Icono icono = new Icono();
+
 
   public Alerta evaluarClima(Clima clima) {
     if (this.cumpleCondicion(clima)) {
