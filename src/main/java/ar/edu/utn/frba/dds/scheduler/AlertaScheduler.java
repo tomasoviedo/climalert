@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class AlertaScheduler {
   private AlertaService alertaService;
 
-  @Scheduled(cron = "0 /5 * * * *", zone = "America/Argentina/Buenos_Aires")
+  @Scheduled(cron = "0 */1 * * * *", zone = "America/Argentina/Buenos_Aires")
   public void obtenerClima() {
 
     System.out.println("cron task de alertas");

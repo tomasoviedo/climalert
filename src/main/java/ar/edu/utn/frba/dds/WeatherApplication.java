@@ -7,17 +7,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableScheduling
 @SpringBootApplication
-@EnableConfigurationProperties(RestWeatherProperties.class)
 public class WeatherApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(WeatherApplication.class, args);
   }
 
-  @Bean
-  public CommandLineRunner testearClima(ClimaService climaService) {
-    return args -> climaService.guardarClima();
-  }
+  //@Bean
+  //public CommandLineRunner testearClima(ClimaService climaService) {
+  //  return args -> climaService.guardarClima();
+  //}
 }

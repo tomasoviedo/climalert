@@ -11,8 +11,9 @@ public class ClimaScheduler {
 
   private final ClimaService climaService;
 
-  @Scheduled(cron = "0 /5 * * * *", zone = "America/Argentina/Buenos_Aires")
+  @Scheduled(cron = "0 */5 * * * *", zone = "America/Argentina/Buenos_Aires")
   public void obtenerClima() {
+    System.out.print("cron corriendo");
     climaService.guardarClima();
   }
 }

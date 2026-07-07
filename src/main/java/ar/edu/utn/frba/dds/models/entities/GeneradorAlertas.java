@@ -1,28 +1,32 @@
 package ar.edu.utn.frba.dds.models.entities;
 
+import ar.edu.utn.frba.dds.models.entities.CondicionAlerta;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
-public class GeneradorAlertas {
-  private Icono icono = new Icono();
+import java.util.List;
 
+@Component
+@AllArgsConstructor
+public class GeneradorAlertas {
+
+  private final List<CondicionAlerta> condiciones;
 
   public Alerta evaluarClima(Clima clima) {
-    if (this.cumpleCondicion(clima)) {
+    boolean disparaAlerta = condiciones.stream().allMatch(c -> c.cumple(clima));
+
+    if (disparaAlerta) {
       Alerta alerta = new Alerta();
       alerta.setClima(clima);
-      String detalle =
-          icono.texto()
-              + String.format(
-                  "ALERTA en %s: Temperatura: %.1f°C; Humedad: %1f%%.",
-                  clima.getCiudad(), clima.getTemperatura(), clima.getHumedad());
-      alerta.setDetalle(detalle);
+      alerta.setDetalle(construirDetalle(clima));
       return alerta;
     }
     return null;
   }
 
-  private Boolean cumpleCondicion(Clima clima) {
-    return clima.getTemperatura() > 35.0 && clima.getHumedad() > 60;
+  private String construirDetalle(Clima clima) {
+    return String.format(
+            "ALERTA en %s: Temperatura: %.1f°C; Humedad: %.1f%%.",
+            clima.getCiudad(), clima.getTemperatura(), clima.getHumedad());
   }
 }

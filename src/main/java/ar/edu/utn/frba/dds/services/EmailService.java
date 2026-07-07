@@ -3,5 +3,5 @@ package ar.edu.utn.frba.dds.services;
 import ar.edu.utn.frba.dds.models.entities.Alerta;
 
 public interface EmailService {
-  public Void enviarAlerta(Alerta alerta);
+  public void enviarAlerta(Alerta alerta);
 }

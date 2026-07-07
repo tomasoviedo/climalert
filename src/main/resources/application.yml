@@ -7,3 +7,15 @@ alerta:
     - admin@clima.com
     - emergencias@clima.com
     - meteorologia@clima.com
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tomi161205@gmail.com
+    password: qaac road apkd ekha
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

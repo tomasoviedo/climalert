@@ -17,6 +17,9 @@ public class ClimaRepositoryInMemory implements ClimaRepository {
 
   @Override
   public Clima getLast() {
+    if (climas.isEmpty()) {
+      return null;
+    }
     return climas.getLast();
   }
 }
