@@ -1,0 +1,24 @@
+# application.yml.example
+weather-api:
+  base-url: http://api.weatherapi.com/v1/current.json
+  api-key: ${WEATHER_API_KEY}
+  location: Buenos Aires
+
+alerta:
+  destinatarios:
+    - admin@clima.com
+    - emergencias@clima.com
+    - meteorologia@clima.com
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
